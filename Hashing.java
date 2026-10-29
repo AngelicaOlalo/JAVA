@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Hashing {
-
     static class Node {
         int studid;
         String studentname;
@@ -22,7 +21,7 @@ public class Hashing {
         int choice;
 
         do {
-            System.out.println("Hashing \n1. Add \n2. Show table \n3. Linear probing \n4. Exit");
+            System.out.println("Hashing \n1. Add \n2. Show table \n3. Exit");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -48,9 +47,18 @@ public class Hashing {
                     int mod = id % 5;
 
                     Node newStudent = new Node(id, name);
-                    newStudent.next = studentTable[mod];
-                    studentTable[mod] = newStudent;
-                    break;
+                    if (studentTable[mod] == null) {
+                      studentTable[mod] = newStudent;
+                      } else {
+                        Node current = studentTable[mod];
+                        while (current.next != null) {
+                          current = current.next;
+                          }
+                          current.next = newStudent;
+                          }
+    
+    studcount++; // Keep track of the total number of students added
+    break;
 
                 case 2:
                     if (studentTable == null) {
